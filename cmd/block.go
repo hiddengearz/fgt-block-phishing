@@ -65,7 +65,7 @@ var BlockCmd = &cobra.Command{
 
 		fortigate := internal.FortiGate{
 			Url:   "https://" + host,
-			Token: "psn37h1Q4G3h1th6Qbtzrghz57sn4G",
+			Token: "",
 		}
 		fortigate.BlockURL()
 
