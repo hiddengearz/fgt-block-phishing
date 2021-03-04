@@ -1,3 +1,4 @@
+//Package logger provides a refference to the central logger and associated functions/methods
 package logger
 
 import (
@@ -7,23 +8,16 @@ import (
 	"strings"
 
 	"github.com/sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
-var (
-	Log *logrus.Logger
-	//zip    = flag.String("zipkin", os.Getenv("ZIPKIN"), "Zipkin address")
-	//	port        = flag.String("port", "8080", "Port number on which the service should run")
-	//	ip          = flag.String("ip", "0.0.0.0", "Preferred IP address to run the service on")
-	//serviceName = "user"
-)
-
-// This initiates a new Logger and defines the format for logs
+// InitDetailedLogger initializes the logrus logger with "detailed" settings
 func InitDetailedLogger(f *os.File) {
 
-	Log = logrus.New()
-	Log.SetReportCaller(true)
+	log.SetReportCaller(true)
+	log.SetLevel(logrus.DebugLevel)
 
-	Log.SetFormatter(&logrus.JSONFormatter{
+	log.SetFormatter(&logrus.JSONFormatter{
 		TimestampFormat: "",
 		PrettyPrint:     true,
 		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
@@ -36,6 +30,6 @@ func InitDetailedLogger(f *os.File) {
 
 	// Set output of logs to Stdout
 	// Change to f for redirecting to file
-	Log.SetOutput(os.Stdout)
+	log.SetOutput(os.Stdout)
 
 }
